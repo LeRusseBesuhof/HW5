@@ -3,22 +3,20 @@ import UIKit
 struct Event : Identifiable {
     var id : String = UUID().uuidString
     var name : String
-    var dateOfCreation : String
+    var dateOfCreation : [String]
     var image : String
     
     static func rawData() -> [[Event]] {
         [
             [
-                Event(name: "Demobilization", dateOfCreation: "01.12", image: "soldier"),
-                Event(name: "New Job", dateOfCreation: "07.01", image: "job"),
-                Event(name: "Christmas party", dateOfCreation: "09.01", image: "dance"),
-                Event(name: "I'm gonna be an iOS-developer", dateOfCreation: "21.01", image: "programing")
+                Event(name: "December", dateOfCreation: ["Demobilizaion", "Searching for a Job"], image: "dec"),
+                Event(name: "January", dateOfCreation: ["New Job", "Christmas party", "Learning Swift"], image: "jan"),
+                Event(name: "February", dateOfCreation: ["My B-Day", "BF B-Day"], image: "feb"),
+                
             ],
             [
-                Event(name: "Hanging out with my Friends", dateOfCreation: "15.03", image: "friends"),
-                Event(name: "Buying a Scooter", dateOfCreation: "17.03", image: "scooter"),
-                Event(name: "Becoming Error=Nil School student", dateOfCreation: "26.03", image: "error"),
-                Event(name: "Playing the Guitar", dateOfCreation: "01.04", image: "guitar"),
+                Event(name: "March", dateOfCreation: ["Hanging out", "Buying a Scooter",  "Error=Nil"], image: "mar"),
+                Event(name: "April", dateOfCreation: ["Playing the Guitar"], image: "apr"),
             ]
         ]
     }
@@ -30,7 +28,7 @@ class ViewController: UIViewController {
     
     lazy var tableView : UITableView = {
         $0.register(UITableViewCell.self, forCellReuseIdentifier: "event")
-        $0.backgroundColor = .appYellow
+        // $0.backgroundColor = .appYellow
         $0.dataSource = self
         $0.delegate = self
         return $0
@@ -47,6 +45,23 @@ class ViewController: UIViewController {
     }
 }
 
+/*
+ [
+     [
+         Event(name: "Demobilization", dateOfCreation: "01.12", image: "soldier"),
+         Event(name: "New Job", dateOfCreation: "07.01", image: "job"),
+         Event(name: "Christmas party", dateOfCreation: "09.01", image: "dance"),
+         Event(name: "I'm gonna be an iOS-developer", dateOfCreation: "21.01", image: "programing")
+     ],
+     [
+         Event(name: "Hanging out with my Friends", dateOfCreation: "15.03", image: "friends"),
+         Event(name: "Buying a Scooter", dateOfCreation: "17.03", image: "scooter"),
+         Event(name: "Becoming Error=Nil School student", dateOfCreation: "26.03", image: "error"),
+         Event(name: "Playing the Guitar", dateOfCreation: "01.04", image: "guitar"),
+     ]
+ ]
+ */
+
 extension ViewController : UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,7 +74,11 @@ extension ViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "event", for: indexPath)
-        cell.backgroundColor = .appEvent
+        switch indexPath.section {
+        case 0: cell.backgroundColor = .appBlue
+        case 1: cell.backgroundColor = .appGreen
+        default: cell.backgroundColor = .white
+        }
         
         var config = cell.defaultContentConfiguration()
         let currentEvent = events[indexPath.section][indexPath.row]
@@ -67,7 +86,10 @@ extension ViewController : UITableViewDataSource {
         config.text = currentEvent.name
         config.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         
-        config.secondaryText = currentEvent.dateOfCreation
+        config.secondaryText = ""
+        for (ind, el) in currentEvent.dateOfCreation.enumerated() {
+            config.secondaryText! += ind == currentEvent.dateOfCreation.count - 1 ? el : "\(el), "
+        }
         
         config.image = UIImage(named: currentEvent.image)
         config.imageProperties.maximumSize = CGSize(width: 56, height: 56)
