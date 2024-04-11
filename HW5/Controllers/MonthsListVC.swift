@@ -15,7 +15,7 @@ struct Month : Identifiable {
                 
             ],
             [
-                Month(name: "March", notes: ["Hanging out", "Buying a Scooter",  "Error=Nil"], image: "mar"),
+                Month(name: "March", notes: ["Hanging out", "Buying a Scooter",  "Error=Nil School"], image: "mar"),
                 Month(name: "April", notes: ["Playing the Guitar"], image: "apr")
             ]
         ]
@@ -62,7 +62,7 @@ extension ViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Month", for: indexPath)
         switch indexPath.section {
-        case 0: cell.backgroundColor = .appBlue
+        case 0: cell.backgroundColor = .appYellow
         case 1: cell.backgroundColor = .appGreen
         default: cell.backgroundColor = .white
         }
@@ -106,13 +106,6 @@ extension ViewController : UITableViewDelegate {
         notesListVC.sectionNumber = indexPath.section == 0 ? indexPath.row : indexPath.row + 3
         notesListVC.names = curMonth.notes
         
-        // let text = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: indexPath.section) ?? "no data"
-        // notesListVC.seasonName = text
-        
         navigationController?.pushViewController(notesListVC, animated: true)
     }
 }
-
-// а как создать универсальные расширения для всего проекта?
-// а где вызываются все эти функции?
-

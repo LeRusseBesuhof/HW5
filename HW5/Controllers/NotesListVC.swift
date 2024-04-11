@@ -28,8 +28,7 @@ struct Note : Identifiable {
             ],
             [
                 Note(dateOfCreation: "01.04", image: "guitar")
-            ],
-            []
+            ]
         ]
     }
 }
@@ -64,9 +63,7 @@ class NotesListVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        
         [seasonPicture, seasonLabel, notesTable].forEach { view.addSubview($0) }
-        // view.addSubview(notesTable)
     }
 }
 
@@ -80,8 +77,7 @@ extension NotesListVC : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "season", for: indexPath)
         
         var config = cell.defaultContentConfiguration()
-        let curNote = notes[indexPath.section][indexPath.row]
-        print(indexPath.section, indexPath.row)
+        let curNote = notes[sectionNumber][indexPath.row]
         
         config.text = names[indexPath.row]
         config.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .bold)
@@ -96,4 +92,8 @@ extension NotesListVC : UITableViewDataSource {
     }
 }
 
-// сделал передачу заголовка секций для установки его в качестве названия раздела
+extension NotesListVC : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "Your Notes"
+    }
+}
