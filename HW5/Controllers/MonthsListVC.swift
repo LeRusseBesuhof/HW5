@@ -11,12 +11,12 @@ struct Month : Identifiable {
             [
                 Month(name: "December", notes: ["Demobilizaion", "Searching for a Job"], image: "dec"),
                 Month(name: "January", notes: ["New Job", "Christmas party", "Learning Swift"], image: "jan"),
-                Month(name: "February", notes: ["My B-Day", "BF B-Day"], image: "feb")
+                Month(name: "February", notes: ["My Birthday", "Best Friend's Birthday"], image: "feb")
                 
             ],
             [
-                Month(name: "March", notes: ["Hanging out", "Buying a Scooter",  "Error=Nil School"], image: "mar"),
-                Month(name: "April", notes: ["Playing the Guitar"], image: "apr")
+                Month(name: "March", notes: ["Hanging out with my Friend", "Buying a Scooter \"Suzuki Verde\"",  "Becoming \"Error=Nil\" School Student"], image: "mar"),
+                Month(name: "April", notes: ["Learning Songs on the Guitar"], image: "apr")
             ]
         ]
     }
