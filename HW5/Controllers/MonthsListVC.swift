@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "My Months in 2024\u{1F4DD}"
+        navigationItem.title = "My Events in 2024\u{1F4DD}"
         
         view.addSubview(tableView)
     }
