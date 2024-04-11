@@ -103,8 +103,16 @@ extension ViewController : UITableViewDelegate {
         
         notesListVC.imageName = curMonth.image
         notesListVC.seasonName = curMonth.name
-        notesListVC.sectionNumber = indexPath.section == 0 ? indexPath.row : indexPath.row + 3
         notesListVC.names = curMonth.notes
+        
+        switch indexPath.section {
+        case 1:
+            notesListVC.sectionNumber = indexPath.row + 3
+            notesListVC.imageName = "spring"
+        default:
+            notesListVC.sectionNumber = indexPath.row
+            notesListVC.imageName = "winter"
+        }
         
         navigationController?.pushViewController(notesListVC, animated: true)
     }

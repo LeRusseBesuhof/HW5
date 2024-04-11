@@ -94,6 +94,6 @@ extension NotesListVC : UITableViewDataSource {
 
 extension NotesListVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Your Notes"
+        "My Events"
     }
 }
