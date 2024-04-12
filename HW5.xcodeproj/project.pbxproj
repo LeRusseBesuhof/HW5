@@ -11,6 +11,9 @@
 		372DF2732BC6E071000579FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372DF2722BC6E071000579FA /* SceneDelegate.swift */; };
 		372DF27A2BC6E073000579FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 372DF2792BC6E073000579FA /* Assets.xcassets */; };
 		372DF27D2BC6E073000579FA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 372DF27C2BC6E073000579FA /* Base */; };
+		37482B652BC94C6700125539 /* MonthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37482B642BC94C6700125539 /* MonthModel.swift */; };
+		37482B672BC94CA900125539 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37482B662BC94CA900125539 /* NoteModel.swift */; };
+		37482B6A2BC94DF100125539 /* UIListContentConfiguration.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37482B692BC94DF100125539 /* UIListContentConfiguration.ext.swift */; };
 		37E68D432BC815EB00C518B5 /* MonthsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E68D412BC815EB00C518B5 /* MonthsListVC.swift */; };
 		37E68D452BC8164200C518B5 /* NotesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E68D442BC8164200C518B5 /* NotesListVC.swift */; };
 /* End PBXBuildFile section */
@@ -22,6 +25,9 @@
 		372DF2792BC6E073000579FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		372DF27C2BC6E073000579FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		372DF27E2BC6E073000579FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37482B642BC94C6700125539 /* MonthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthModel.swift; sourceTree = "<group>"; };
+		37482B662BC94CA900125539 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		37482B692BC94DF100125539 /* UIListContentConfiguration.ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIListContentConfiguration.ext.swift; sourceTree = "<group>"; };
 		37E68D412BC815EB00C518B5 /* MonthsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthsListVC.swift; sourceTree = "<group>"; };
 		37E68D442BC8164200C518B5 /* NotesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +62,8 @@
 		372DF26F2BC6E071000579FA /* HW5 */ = {
 			isa = PBXGroup;
 			children = (
+				37482B682BC94DBE00125539 /* Extensions */,
+				37482B632BC94C2B00125539 /* DataModels */,
 				37E68D422BC815EB00C518B5 /* Controllers */,
 				372DF2722BC6E071000579FA /* SceneDelegate.swift */,
 				372DF2702BC6E071000579FA /* AppDelegate.swift */,
@@ -64,6 +72,23 @@
 				372DF27E2BC6E073000579FA /* Info.plist */,
 			);
 			path = HW5;
+			sourceTree = "<group>";
+		};
+		37482B632BC94C2B00125539 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				37482B642BC94C6700125539 /* MonthModel.swift */,
+				37482B662BC94CA900125539 /* NoteModel.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		37482B682BC94DBE00125539 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				37482B692BC94DF100125539 /* UIListContentConfiguration.ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		37E68D422BC815EB00C518B5 /* Controllers */ = {
@@ -145,9 +170,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37482B672BC94CA900125539 /* NoteModel.swift in Sources */,
 				37E68D432BC815EB00C518B5 /* MonthsListVC.swift in Sources */,
 				372DF2712BC6E071000579FA /* AppDelegate.swift in Sources */,
 				37E68D452BC8164200C518B5 /* NotesListVC.swift in Sources */,
+				37482B6A2BC94DF100125539 /* UIListContentConfiguration.ext.swift in Sources */,
+				37482B652BC94C6700125539 /* MonthModel.swift in Sources */,
 				372DF2732BC6E071000579FA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

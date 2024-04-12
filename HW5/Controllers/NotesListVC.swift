@@ -1,38 +1,5 @@
 import UIKit
 
-struct Note : Identifiable {
-    var id: String = UUID().uuidString
-    var name : String = ""
-    var dateOfCreation : String
-    var image : String
-    
-    static func rawData() -> [[Note]] {
-        [
-            [
-                Note(dateOfCreation: "01.12", image: "soldier"),
-                Note(dateOfCreation: "14.12", image: "job-seeker")
-            ],
-            [
-                Note(dateOfCreation: "07.01", image: "job"),
-                Note(dateOfCreation: "09.01", image: "dance"),
-                Note(dateOfCreation: "21.01", image: "programing")
-            ],
-            [
-                Note(dateOfCreation: "14.02", image: "birthday"),
-                Note(dateOfCreation: "23.02", image: "bfparty")
-            ],
-            [
-                Note(dateOfCreation: "15.03", image: "friends"),
-                Note(dateOfCreation: "17.03", image: "scooter"),
-                Note(dateOfCreation: "26.03", image: "error")
-            ],
-            [
-                Note(dateOfCreation: "01.04", image: "guitar")
-            ]
-        ]
-    }
-}
-
 class NotesListVC: UIViewController {
     
     lazy var imageName = ""
@@ -76,24 +43,16 @@ extension NotesListVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "season", for: indexPath)
         
-        var config = cell.defaultContentConfiguration()
         let curNote = notes[sectionNumber][indexPath.row]
         
-        config.text = names[indexPath.row]
-        config.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        var config = cell.defaultContentConfiguration()
+        cell.contentConfiguration = config.setGetConfigBy(text: names[indexPath.row], secondaryText: curNote.dateOfCreation, image: curNote.image)
         
-        config.image = UIImage(named: curNote.image)
-        config.imageProperties.maximumSize = CGSize(width: 56, height: 56)
-        
-        config.secondaryText = curNote.dateOfCreation
-        
-        cell.contentConfiguration = config
         return cell
     }
 }
 
 extension NotesListVC : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "My Events"
-    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { "My Events" }
 }

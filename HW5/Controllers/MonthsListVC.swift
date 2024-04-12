@@ -1,34 +1,7 @@
 import UIKit
 
-struct Month : Identifiable {
-    var id : String = UUID().uuidString
-    var name : String
-    var notes : [String]
-    var image : String
-    
-    static func rawData() -> [[Month]] {
-        [
-            [
-                Month(name: "December", notes: ["Demobilizaion", "Searching for a Job"], image: "dec"),
-                Month(name: "January", notes: ["New Job", "Christmas party", "Learning Swift"], image: "jan"),
-                Month(name: "February", notes: ["My Birthday", "Best Friend's Birthday"], image: "feb")
-                
-            ],
-            [
-                Month(name: "March", notes: ["Hanging out with my Friend", "Buying a Scooter \"Suzuki Verde\"",  "Becoming \"Error=Nil\" School Student"], image: "mar"),
-                Month(name: "April", notes: ["Learning Songs on the Guitar"], image: "apr")
-            ]
-        ]
-    }
-}
 
 class ViewController: UIViewController {
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-    }
     
     private var months = Month.rawData()
     
@@ -44,6 +17,7 @@ class ViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "My Events in 2024\u{1F4DD}"
+        navigationItem.backButtonTitle = ""
         
         view.addSubview(tableView)
     }
@@ -60,29 +34,26 @@ extension ViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Month", for: indexPath)
+        
         switch indexPath.section {
         case 0: cell.backgroundColor = .appYellow
         case 1: cell.backgroundColor = .appGreen
         default: cell.backgroundColor = .white
         }
         
-        var config = cell.defaultContentConfiguration()
         let currentMonth = months[indexPath.section][indexPath.row]
         
-        config.text = currentMonth.name
-        config.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        
-        config.secondaryText = ""
+        var secondaryText = ""
         for (ind, el) in currentMonth.notes.enumerated() {
-            config.secondaryText! += ind == currentMonth.notes.count - 1 ? el : "\(el), "
+            secondaryText += ind == currentMonth.notes.count - 1 ? el : "\(el), "
         }
         
-        config.image = UIImage(named: currentMonth.image)
-        config.imageProperties.maximumSize = CGSize(width: 56, height: 56)
-        
+        var config = cell.defaultContentConfiguration()
         cell.accessoryType = .disclosureIndicator
-        cell.contentConfiguration = config
+        cell.contentConfiguration = config.setGetConfigBy(text: currentMonth.name, secondaryText: secondaryText, image: currentMonth.image)
+        
         return cell
     }
 }
